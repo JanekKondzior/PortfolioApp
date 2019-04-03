@@ -30,6 +30,7 @@ namespace BackEnd.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //  services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))); setting up code first db
             // dotnet ef migrations add InitialCreate > dotnet ef database update
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,7 @@ namespace BackEnd.API
                 app.UseHsts();
             }
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseMvc();
         }
